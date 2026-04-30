@@ -260,5 +260,21 @@ Generated report data includes:
 4. User uploads resume, writes self-description, and pastes job description.
 5. Backend extracts resume text from the PDF.
 6. Gemini generates a structured interview report.
+
+## Project Screenshots
+
+To give you a visual tour of the platform, here are the key interface highlights:
+
+| **Login / Authentication** | **Main Workspace (Upload)** |
+|:---:|:---:|
+| ![Login Page](https://ibb.co/GvSxpGqW) | ![Upload Section](https://ibb.co/FqVQjTh6) |
+
+| **AI Analysis Results** | **Skill Gaps & Prep Plan** |
+|:---:|:---:|
+| ![Analysis](https://ibb.co/dwyT8jyh) | ![Preparation Plan](https://ibb.co/0VBgZ5tF) |
+
+| **Generated Resume Preview** |
+|:---:|
+| ![Resume Preview](https://ibb.co/cS7H9Kcn) |
 7. Report is validated with Zod and saved in MongoDB.
 8. User can open previous reports or generate a resume PDF.
