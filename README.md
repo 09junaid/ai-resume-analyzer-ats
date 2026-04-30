@@ -252,29 +252,18 @@ Generated report data includes:
 }
 ```
 
-## Current Flow
-
-1. User registers or logs in.
-2. Frontend checks session with `get-me`.
-3. User opens the workspace.
-4. User uploads resume, writes self-description, and pastes job description.
-5. Backend extracts resume text from the PDF.
-6. Gemini generates a structured interview report.
-
 ## Project Screenshots
 
 To give you a visual tour of the platform, here are the key interface highlights:
 
-| **Login / Authentication** | **Main Workspace (Upload)** |
+| **Main Dashboard / Analysis** | **Input Workspace** |
 |:---:|:---:|
-| ![Login Page](https://ibb.co/GvSxpGqW) | ![Upload Section](https://ibb.co/FqVQjTh6) |
+| ![Analysis Result](https://i.ibb.co/wF1k5B1v/img1.png) | ![Workspace](https://i.ibb.co/G3sKkmTt/img2.png) |
 
-| **AI Analysis Results** | **Skill Gaps & Prep Plan** |
+| **AI Report Generation** | **Detailed Feedback** |
 |:---:|:---:|
-| ![Analysis](https://ibb.co/dwyT8jyh) | ![Preparation Plan](https://ibb.co/0VBgZ5tF) |
+| ![AI Report](https://i.ibb.co/mVMwKrCW/img3.png) | ![Detailed Analysis](https://i.ibb.co/2YNzf4Fq/img4.png) |
 
 | **Generated Resume Preview** |
 |:---:|
-| ![Resume Preview](https://ibb.co/cS7H9Kcn) |
-7. Report is validated with Zod and saved in MongoDB.
-8. User can open previous reports or generate a resume PDF.
+| ![Resume Final](https://i.ibb.co/8DZKsGHr/img5.png) |
