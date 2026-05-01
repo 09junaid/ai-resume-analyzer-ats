@@ -260,10 +260,10 @@ To give you a visual tour of the platform, here are the key interface highlights
 |:---:|:---:|
 | ![Analysis Result](https://i.ibb.co/wF1k5B1v/img1.png) | ![Workspace](https://i.ibb.co/G3sKkmTt/img2.png) |
 
-| **AI Report Generation** | **Detailed Feedback** |
+| **AI Report Generation** | **Register** |
 |:---:|:---:|
 | ![AI Report](https://i.ibb.co/mVMwKrCW/img3.png) | ![Detailed Analysis](https://i.ibb.co/2YNzf4Fq/img4.png) |
 
-| **Generated Resume Preview** |
+| **Login** |
 |:---:|
 | ![Resume Final](https://i.ibb.co/8DZKsGHr/img5.png) |
