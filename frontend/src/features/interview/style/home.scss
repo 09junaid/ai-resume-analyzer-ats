@@ -2,6 +2,7 @@
   min-height: 100vh;
   padding: 14px 0 40px;
   position: relative;
+  overflow-x: hidden;
 }
 
 .home-shell {
@@ -116,6 +117,7 @@
   border-radius: 16px;
   background: rgba(16, 16, 16, 0.96);
   padding: 12px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -305,6 +307,7 @@
 .field-group textarea,
 .field-group input[type="file"] {
   width: 100%;
+  box-sizing: border-box;
   border: 1px solid var(--input);
   border-radius: 12px;
   background: var(--muted);
@@ -381,6 +384,7 @@
 
 .resume-upload-surface {
   width: 100%;
+  box-sizing: border-box;
   min-height: 84px;
   border: 1px solid var(--input);
   border-radius: 12px;
@@ -542,6 +546,7 @@
 
 .recent-reports {
   width: 100%;
+  box-sizing: border-box;
   padding: 22px 24px 24px;
   display: grid;
   gap: 18px;
