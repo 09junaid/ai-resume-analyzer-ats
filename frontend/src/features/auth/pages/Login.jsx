@@ -69,12 +69,7 @@ function Login() {
             </div>
 
             <div className="input-group">
-              <div className="label-row">
-                <label htmlFor="password">Password</label>
-                <button type="button" className="text-button">
-                  Forgot password?
-                </button>
-              </div>
+              <label htmlFor="password">Password</label>
               <input
                 onChange={(e) => {
                   setPassword(e.target.value);
