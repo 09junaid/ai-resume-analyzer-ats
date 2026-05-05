@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon server.js"
+    "start": "node server",
+    "dev": "npx nodemon server.js",
+    "vercel-start": "node server.js"
   },
   "keywords": [],
   "author": "",
