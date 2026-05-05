@@ -1,4 +1,8 @@
-import api from "../../../lib/api";
+import axios from "axios";
+const api = axios.create({
+  baseURL: "https://ai-resume-analyzer-ats-hs1f.vercel.app/",
+  withCredentials: true,
+});
 export async function register({ username, email, password }) {
   try {
     const response = await api.post("/api/auth/register", {

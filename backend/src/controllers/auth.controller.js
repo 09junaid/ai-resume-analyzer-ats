@@ -3,17 +3,6 @@ const tokenBlacklistModel = require("../models/blacklist.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-function getCookieOptions() {
-  const isProduction = process.env.NODE_ENV === "production";
-
-  return {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? "none" : "lax",
-    maxAge: 24 * 60 * 60 * 1000,
-  };
-}
-
 /**
  * @name registerUserController
  * @description register a new user, expects username,email and password in the request body
@@ -49,7 +38,7 @@ async function registerUserController(req, res) {
     process.env.JWT_SECRET,
     { expiresIn: "1d" },
   );
-  res.cookie("token", token, getCookieOptions());
+  res.cookie("token", token);
   res.status(201).json({
     status: 201,
     success: true,
@@ -90,7 +79,7 @@ async function loginUserController(req, res) {
     process.env.JWT_SECRET,
     { expiresIn: "1d" },
   );
-  res.cookie("token", token, getCookieOptions());
+  res.cookie("token", token);
   res.status(200).json({
     status: 200,
     success: true,
@@ -113,7 +102,7 @@ async function logoutUserController(req, res) {
   if (token) {
     await tokenBlacklistModel.create({ token });
   }
-  res.clearCookie("token", getCookieOptions());
+  res.clearCookie("token");
   res.status(200).json({
     status: 200,
     success: true,
