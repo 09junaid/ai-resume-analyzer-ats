@@ -1,8 +1,4 @@
-import axios from "axios";
-const api = axios.create({
-  baseURL: "https://ai-resume-analyzer-ats-hs1f.vercel.app/",
-  withCredentials: true,
-});
+import api from "../../../lib/api";
 
 /**
  * @description This function generates an interview report by sending a POST request to the backend API. It takes in the job description, self description, and resume file as parameters, and returns the generated interview report data from the response.
