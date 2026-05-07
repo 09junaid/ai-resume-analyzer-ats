@@ -9,9 +9,7 @@ const interviewReportModel = require("../models/interviewReport.model");
  * @description Generate an interview report based on the user's resume, self-description, and job description.
  */
 async function generateInterViewReportController(req, res) {
-  const resumeContent = await new pdfParse.PDFParse(
-    Uint8Array.from(req.file.buffer),
-  ).getText();
+  const resumeContent = await pdfParse(req.file.buffer);
   const { selfDescription, jobDescription } = req.body;
 
   const interViewReportByAi = await generateInterviewReport({
