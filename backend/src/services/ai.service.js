@@ -1,8 +1,6 @@
 const { GoogleGenAI } = require("@google/genai");
 const { z } = require("zod");
 const { zodToJsonSchema } = require("zod-to-json-schema");
-const puppeteer = require("puppeteer-core");
-const chromium = require("@sparticuz/chromium");
 const fs = require("fs");
 
 const ai = new GoogleGenAI({
@@ -373,6 +371,8 @@ function getChromeExecutablePath() {
 async function generatePdfFromHtml(htmlContent) {
   let browser;
   const isServerless = Boolean(process.env.VERCEL || process.env.AWS_REGION);
+  const puppeteer = require("puppeteer-core");
+  const chromium = isServerless ? require("@sparticuz/chromium") : null;
   const executablePath = isServerless
     ? await chromium.executablePath()
     : getChromeExecutablePath();
@@ -383,7 +383,7 @@ async function generatePdfFromHtml(htmlContent) {
       args: isServerless
         ? chromium.args
         : ["--no-sandbox", "--disable-setuid-sandbox"],
-      defaultViewport: chromium.defaultViewport,
+      defaultViewport: isServerless ? chromium.defaultViewport : null,
       headless: isServerless ? chromium.headless : true,
     });
     const page = await browser.newPage();
