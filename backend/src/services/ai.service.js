@@ -1,7 +1,8 @@
 const { GoogleGenAI } = require("@google/genai");
 const { z } = require("zod");
 const { zodToJsonSchema } = require("zod-to-json-schema");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
 const fs = require("fs");
 
 const ai = new GoogleGenAI({
@@ -353,8 +354,11 @@ function buildFallbackResumeHtml({ resume, selfDescription, jobDescription }) {
 }
 
 function getChromeExecutablePath() {
+  if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+    return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+
   const possiblePaths = [
-    process.env.PUPPETEER_EXECUTABLE_PATH,
     "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
     `${process.env.LOCALAPPDATA}\\Google\\Chrome\\Application\\chrome.exe`,
@@ -368,12 +372,19 @@ function getChromeExecutablePath() {
 
 async function generatePdfFromHtml(htmlContent) {
   let browser;
-  const executablePath = getChromeExecutablePath();
+  const isServerless = Boolean(process.env.VERCEL || process.env.AWS_REGION);
+  const executablePath = isServerless
+    ? await chromium.executablePath()
+    : getChromeExecutablePath();
 
   try {
     browser = await puppeteer.launch({
-      ...(executablePath ? { executablePath } : {}),
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      executablePath,
+      args: isServerless
+        ? chromium.args
+        : ["--no-sandbox", "--disable-setuid-sandbox"],
+      defaultViewport: chromium.defaultViewport,
+      headless: isServerless ? chromium.headless : true,
     });
     const page = await browser.newPage();
     await page.setContent(htmlContent, { waitUntil: "domcontentloaded" });
