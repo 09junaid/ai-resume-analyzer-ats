@@ -9,12 +9,28 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleRegister({ username, email, password });
-    navigate("/workspace");
+    setError("");
+
+    if (!username.trim() || !email.trim() || !password) {
+      setError("Please enter your name, email, and password.");
+      return;
+    }
+
+    try {
+      await handleRegister({
+        username: username.trim(),
+        email: email.trim(),
+        password,
+      });
+      navigate("/workspace");
+    } catch (err) {
+      setError(err.message);
+    }
   };
   if (loading)
     return (
@@ -57,9 +73,12 @@ function Register() {
           </div>
 
           <form className="auth-form" onSubmit={handleSubmit}>
+            {error && <p className="form-error">{error}</p>}
+
             <div className="input-group">
-              <label htmlFor="fullName">Full name</label>
+              <label htmlFor="username">Full name</label>
               <input
+                value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
@@ -68,12 +87,14 @@ function Register() {
                 name="username"
                 placeholder="Enter your username"
                 autoComplete="username"
+                required
               />
             </div>
 
             <div className="input-group">
               <label htmlFor="email">Email</label>
               <input
+                value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -82,12 +103,14 @@ function Register() {
                 name="email"
                 placeholder="Enter email address"
                 autoComplete="email"
+                required
               />
             </div>
 
             <div className="input-group">
               <label htmlFor="password">Password</label>
               <input
+                value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -96,6 +119,7 @@ function Register() {
                 name="password"
                 placeholder="Create a password"
                 autoComplete="new-password"
+                required
               />
             </div>
 
