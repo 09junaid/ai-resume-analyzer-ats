@@ -38,15 +38,4 @@ interviewRouter.get(
   interviewController.getAllInterviewReportsController,
 );
 
-/**
- * @route POST /api/interview/resume/pdf
- * @description Generate a PDF version of the candidate's resume. The PDF will be generated based on the uploaded resume file and returned as a response.
- * @access private
- */
-interviewRouter.post(
-  "/resume/pdf/:interviewReportId",
-  authMiddleware.authUser,
-  interviewController.generateResumePdfController,
-);
-
 module.exports = interviewRouter;

@@ -3,7 +3,6 @@ import {
   generateInterviewReport,
   getAllInterviewReports,
   getInterviewReportById,
-  generateResumePdf,
 } from "../services/interview.api";
 import { InterviewContext } from "../context/interview.context";
 
@@ -72,25 +71,6 @@ export const useInterview = () => {
     [setLoading, setReports],
   );
 
-  const getResumePdf = useCallback(async (interviewReportId) => {
-    try {
-      const response = await generateResumePdf({ interviewReportId });
-      const url = window.URL.createObjectURL(
-        new Blob([response], { type: "application/pdf" }),
-      );
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `resume_${interviewReportId}.pdf`);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error downloading resume PDF:", error);
-      throw error;
-    }
-  }, []);
-
   return {
     loading,
     report,
@@ -98,6 +78,5 @@ export const useInterview = () => {
     generateReport,
     fetchReportById,
     getReports,
-    getResumePdf,
   };
 };

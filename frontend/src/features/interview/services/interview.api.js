@@ -58,36 +58,3 @@ export const getAllInterviewReports = async () => {
     return response.data;
   });
 };
-
-/**
- * @description This function generates a PDF version of the candidate's resume by sending a POST request to the backend API. It takes in the interview report ID as a parameter, and returns the generated PDF file as a blob from the response.
- */
-export const generateResumePdf = async ({ interviewReportId }) => {
-  return dedupeRequest(`resume-pdf:${interviewReportId}`, async () => {
-    const response = await api.post(
-      `/api/interview/resume/pdf/${interviewReportId}`,
-      null,
-      {
-        responseType: "blob",
-      },
-    );
-
-    return response.data;
-  }).catch(async (error) => {
-    if (!error.response?.data || !(error.response.data instanceof Blob)) {
-      throw error;
-    }
-
-    const errorText = await error.response.data.text();
-    let message = errorText || "Unable to download PDF";
-
-    try {
-      const parsedError = JSON.parse(errorText);
-      message = parsedError.message || message;
-    } catch {
-      // Keep the plain text message when the response is not JSON.
-    }
-
-    throw new Error(message);
-  });
-};

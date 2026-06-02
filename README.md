@@ -15,7 +15,6 @@ The app lets a user:
   - skill gaps
   - day-wise preparation plan
 - reopen previous reports
-- generate a tailored resume PDF
 
 ## Tech Stack
 
@@ -37,7 +36,6 @@ The app lets a user:
 - Multer for PDF upload
 - `pdf-parse` for resume text extraction
 - Google Gemini via `@google/genai`
-- Puppeteer for resume PDF generation
 - Zod for AI response validation
 
 ## Project Structure
@@ -78,7 +76,7 @@ Main areas:
 - `src/features/interview`
   - landing/home/interview pages
   - interview context and `useInterview` hook
-  - API layer for report generation, report fetch, and resume PDF download
+  - API layer for report generation and report fetch
 
 Frontend behavior:
 
@@ -95,7 +93,6 @@ Main responsibilities:
 - parse uploaded resume PDFs
 - call Gemini to generate structured interview reports
 - save reports to MongoDB
-- generate tailored resume PDFs using AI + Puppeteer
 
 Important backend modules:
 
@@ -212,7 +209,6 @@ npm run dev
     - `selfDescription`
 - `GET /api/interview`
 - `GET /api/interview/report/:interviewId`
-- `POST /api/interview/resume/pdf/:interviewReportId`
 
 ## Interview Report Shape
 

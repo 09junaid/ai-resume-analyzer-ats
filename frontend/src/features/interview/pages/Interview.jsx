@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../style/interview.scss";
 import { useInterview } from "../hooks/useInterview";
 import { useNavigate, useParams } from "react-router";
@@ -7,7 +7,6 @@ import {
   FiAward,
   FiBookmark,
   FiCalendar,
-  FiDownload,
   FiList,
   FiMessageSquare,
   FiTarget,
@@ -68,11 +67,10 @@ function InterviewQuestionList({ items, emptyMessage, listKey }) {
 
 function Interview() {
   const [activeTab, setActiveTab] = useState("technical");
-  const [pdfDownloading, setPdfDownloading] = useState(false);
   const { interviewId } = useParams();
   const navigate = useNavigate();
 
-  const { report, fetchReportById, loading, getResumePdf } = useInterview();
+  const { report, fetchReportById, loading } = useInterview();
   const technicalQuestions = report?.technicalQuestions || [];
   const behavioralQuestions = report?.behavioralQuestions || [];
   const preparationPlan = report?.preparationPlan || [];
@@ -168,29 +166,6 @@ function Interview() {
                 </span>
               </div>
             </div>
-            <button
-              className="report-download-btn"
-              type="button"
-              disabled={pdfDownloading}
-              onClick={async () => {
-                if (!interviewId || pdfDownloading) return;
-                setPdfDownloading(true);
-                try {
-                  await getResumePdf(interviewId);
-                } catch {
-                  /* error logged in hook */
-                } finally {
-                  setPdfDownloading(false);
-                }
-              }}
-            >
-              {pdfDownloading ? (
-                <span className="download-btn-spinner" aria-hidden />
-              ) : (
-                <FiDownload className="ri" aria-hidden />
-              )}
-              {pdfDownloading ? "Preparing PDF…" : "Export AI resume (PDF)"}
-            </button>
           </div>
         </section>
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import "../style/landing.scss";
 import {
@@ -33,9 +33,9 @@ function Landing() {
       <section className="landing-hero">
         <div className="hero-content">
           <p className="eyebrow">Public Home</p>
-          <h1>Build ATS-ready resumes and AI interview strategy in one flow.</h1>
+          <h1>Build interview strategy from your resume in one focused flow.</h1>
           <p>
-            Create role-focused resumes, identify skill gaps, and prepare with
+            Analyze role fit, identify skill gaps, and prepare with
             actionable technical + behavioral plans. Designed for fast,
             professional outcomes.
           </p>
@@ -156,7 +156,7 @@ function Landing() {
               <div>
                 <strong>Sign in or register</strong>
                 <p>
-                  Create a free account so your reports and downloads stay tied
+                  Create a free account so your interview reports stay tied
                   to you.
                 </p>
               </div>
@@ -166,7 +166,7 @@ function Landing() {
               <div>
                 <strong>Open the workspace</strong>
                 <p>
-                  Paste the job description, upload your resume PDF, and add a
+                  Paste the job description, upload your resume, and add a
                   short self-summary.
                 </p>
               </div>
@@ -184,10 +184,10 @@ function Landing() {
             <li>
               <span className="step-num">4</span>
               <div>
-                <strong>Study & export</strong>
+                <strong>Study your report</strong>
                 <p>
-                  Use the report tabs to prepare, then download your AI-shaped
-                  resume as PDF when you are ready.
+                  Use the report tabs to review questions, skill gaps, and your
+                  preparation roadmap.
                 </p>
               </div>
             </li>

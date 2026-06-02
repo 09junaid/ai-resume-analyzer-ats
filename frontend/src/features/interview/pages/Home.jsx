@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../style/home.scss";
 import { useInterview } from "../hooks/useInterview";
 import { useNavigate } from "react-router";
@@ -259,7 +259,7 @@ function Home() {
           <div className="recent-head">
             <div className="recent-head-text">
               <h2 id="recent-reports-heading">Recent Reports</h2>
-              <p>Open any report to continue prep or download your AI resume.</p>
+              <p>Open any report to continue prep and review your roadmap.</p>
             </div>
             {reports?.length ? (
               <span className="recent-count">
